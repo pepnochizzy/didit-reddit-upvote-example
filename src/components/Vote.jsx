@@ -5,8 +5,8 @@ import { VoteButtons } from "./VoteButtons";
 
 async function getExistingVote(userId, postId) {
   const { rows: existingVotes } = await db.query(
-    "SELECT * FROM votes WHERE user_id = $1 AND post_id = $2 LIMIT 1",
-    [userId, postId]
+    "SELECT * FROM votes WHERE reddit_user_id = $1 AND reddit_post_id = $2 LIMIT 1",
+    [userId, postId],
   );
 
   return existingVotes?.[0];
@@ -35,7 +35,7 @@ async function handleVote(userId, postId, newVote) {
     // Insert a new vote
     await db.query(
       "INSERT INTO votes (user_id, post_id, vote, vote_type) VALUES ($1, $2, $3, 'post')",
-      [userId, postId, newVote]
+      [userId, postId, newVote],
     );
   }
 
