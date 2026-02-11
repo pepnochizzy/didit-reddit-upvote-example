@@ -55,7 +55,7 @@ The project is a work in progress and is not yet complete.
 - Stretch: Fix page titles on post pages to match the post title
 - Stretch: Handle the error when you click to vote while not logged in to show a nice error message
 
-## Issues faced during assignment/reflections on completed requirements
+## Issues faced during assignment and reflections on completed requirements
 
 - Initially, it was going well and I got the deployment to vercel working. It wasn't until I tried to log in that I faced issues. After looking at the logs in vercel it showed my error was with my renaming of the database tables. I decided to rename my tables due to tables with the same names used for other apps I have made. Despite me being thorough with renaming queries in app, this was not enough due to the pg adapter for auth requiring the original table names. There were two potential fixes, either go back to the original table names OR edit the Adapter file. I decided to create a new project on supabase and use the original table names as it felt the most time efficient way to fix this error. This fixed the error and meant I could continue with stretch goals.
 - The first task I chose to tackle after deployment was the error page, this felt straight forward and was something I have done in previous assignments. The most time spent for this task was on styling. Overall, this went well as I didn't face any errors and I also tried to make sure the error page felt familiar by ensuring the styling was consistent with the rest of the app.
