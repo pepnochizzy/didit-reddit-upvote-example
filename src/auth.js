@@ -8,9 +8,9 @@ export const { auth, handlers, signOut, signIn } = NextAuth({
   providers: [GitHub],
   trustHost: true,
   callbacks: {
-    session: async ({ session, reddit_user }) => {
-      console.log(session, reddit_user);
-      session.user.id = reddit_user.id;
+    session: async ({ session, user }) => {
+      console.log(session, user);
+      session.user.id = user.id;
       return session;
     },
   },
