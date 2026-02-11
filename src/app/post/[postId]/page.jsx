@@ -3,6 +3,17 @@ import { CommentList } from "@/components/CommentList";
 import { Vote } from "@/components/Vote";
 import { db } from "@/db";
 
+export async function generateMetadata({ params }) {
+  const postId = params.postId;
+  const { rows: posts } = await db.query(
+    `SELECT posts.id, posts.title FROM posts WHERE posts.id = $1`,
+    [postId],
+  );
+  const post = posts[0];
+  const metadata = { title: post.title };
+  return metadata;
+}
+
 export default async function SinglePostPage({ params }) {
   const postId = params.postId;
 
@@ -15,13 +26,13 @@ export default async function SinglePostPage({ params }) {
     WHERE posts.id = $1
     GROUP BY posts.id, users.name
     LIMIT 1;`,
-    [postId]
+    [postId],
   );
   const post = posts[0];
 
   const { rows: votes } = await db.query(
     `SELECT *, users.name from votes
-     JOIN users on votes.user_id = users.id`
+     JOIN users on votes.user_id = users.id`,
   );
 
   return (
